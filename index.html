@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EduGuardian - Demo</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Arial,Tahoma,sans-serif;
+  background:#f4f6fa;
+  color:#172033;
+}
+button,input,select{font-family:inherit}
+
+:root{
+  --navy:#071b3a;
+  --blue:#0d2d5c;
+  --gold:#d5a83b;
+  --light:#f4f6fa;
+  --white:#fff;
+  --green:#159957;
+  --red:#d64545;
+  --orange:#e39a24;
+}
+
+.login{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  background:linear-gradient(135deg,#071b3a,#123c73);
+}
+
+.login-box{
+  width:100%;
+  max-width:430px;
+  background:white;
+  border-radius:20px;
+  padding:32px;
+  box-shadow:0 20px 60px #0005;
+  text-align:center;
+}
+
+.logo{
+  width:70px;
+  height:70px;
+  margin:auto;
+  border-radius:18px;
+  background:var(--gold);
+  color:var(--navy);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:30px;
+  font-weight:bold;
+}
+
+.login-box h1{
+  margin:15px 0 5px;
+  color:var(--navy);
+}
+
+.login-box p{color:#687386}
+
+.field{
+  text-align:right;
+  margin:15px 0;
+}
+
+.field label{
+  display:block;
+  margin-bottom:7px;
+  font-weight:bold;
+}
+
+.field input,.field select{
+  width:100%;
+  padding:13px;
+  border:1px solid #d8dce5;
+  border-radius:10px;
+  outline:none;
+}
+
+.btn{
+  border:0;
+  border-radius:10px;
+  padding:13px 18px;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+.btn-primary{
+  width:100%;
+  background:var(--navy);
+  color:white;
+}
+
+.btn-gold{
+  background:var(--gold);
+  color:var(--navy);
+}
+
+.demo-note{
+  margin-top:18px;
+  padding:12px;
+  border-radius:10px;
+  background:#fff8df;
+  color:#765b12;
+  font-size:13px;
+}
+
+.app{display:none;min-height:100vh}
+
+.sidebar{
+  position:fixed;
+  right:0;
+  top:0;
+  bottom:0;
+  width:250px;
+  background:var(--navy);
+  color:white;
+  padding:20px 14px;
+  overflow-y:auto;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:10px;
+  margin-bottom:20px;
+}
+
+.brand-icon{
+  background:var(--gold);
+  color:var(--navy);
+  width:42px;
+  height:42px;
+  border-radius:12px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:bold;
+}
+
+.brand strong{font-size:18px}
+
+.nav-btn{
+  width:100%;
+  border:0;
+  background:transparent;
+  color:#dce5f4;
+  padding:13px 14px;
+  text-align:right;
+  border-radius:9px;
+  cursor:pointer;
+  margin:3px 0;
+  font-size:14px;
+}
+
+.nav-btn:hover,.nav-btn.active{
+  background:#ffffff18;
+  color:white;
+}
+
+.logout{
+  margin-top:20px;
+  border-top:1px solid #ffffff22;
+  padding-top:15px;
+}
+
+.main{
+  margin-right:250px;
+  min-height:100vh;
+}
+
+.topbar{
+  height:70px;
+  background:white;
+  border-bottom:1px solid #e5e8ee;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 25px;
+}
+
+.user{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.avatar{
+  width:40px;
+  height:40px;
+  border-radius:50%;
+  background:var(--gold);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:bold;
+}
+
+.content{padding:25px}
+
+.page{display:none}
+.page.active{display:block}
+
+.page-title{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:20px;
+}
+
+.page-title h2{margin:0;color:var(--navy)}
+
+.cards{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:15px;
+  margin-bottom:22px;
+}
+
+.card{
+  background:white;
+  border-radius:14px;
+  padding:20px;
+  box-shadow:0 3px 15px #14213d0a;
+  border:1px solid #e9edf3;
+}
+
+.card .number{
+  font-size:28px;
+  font-weight:bold;
+  color:var(--navy);
+}
+
+.card .label{
+  color:#718096;
+  margin-top:5px;
+}
+
+.card-icon{
+  float:left;
+  font-size:24px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:2fr 1fr;
+  gap:18px;
+}
+
+.table-card{
+  background:white;
+  border-radius:14px;
+  padding:20px;
+  overflow:auto;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  min-width:600px;
+}
+
+th,td{
+  padding:13px 10px;
+  border-bottom:1px solid #edf0f4;
+  text-align:right;
+}
+
+th{
+  background:#f8f9fb;
+  color:#526075;
+}
+
+.badge{
+  display:inline-block;
+  padding:5px 9px;
+  border-radius:20px;
+  font-size:12px;
+  font-weight:bold;
+}
+
+.present{background:#e4f7ed;color:#12824a}
+.absent{background:#fde8e8;color:#b93434}
+.late{background:#fff3dc;color:#a66a00}
+.info{background:#e5efff;color:#215ba5}
+
+.notice{
+  padding:14px;
+  background:#f8f9fb;
+  border-radius:10px;
+  margin-bottom:10px;
+}
+
+.notice strong{display:block;margin-bottom:5px}
+
+.action-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
+}
+
+.action{
+  border:0;
+  background:white;
+  padding:20px;
+  border-radius:14px;
+  text-align:right;
+  cursor:pointer;
+  border:1px solid #e5e9ef;
+}
+
+.action:hover{transform:translateY(-2px)}
+
+.lang{
+  padding:7px 10px;
+  border:1px solid #ddd;
+  border-radius:8px;
+}
+
+.security{
+  border-right:4px solid var(--green);
+}
+
+.warning{
+  border-right:4px solid var(--orange);
+}
+
+@media(max-width:900px){
+  .sidebar{
+    width:210px;
+  }
+  .main{margin-right:210px}
+  .cards{grid-template-columns:repeat(2,1fr)}
+  .grid{grid-template-columns:1fr}
+}
+
+@media(max-width:650px){
+  .sidebar{
+    position:relative;
+    width:100%;
+    height:auto;
+  }
+  .main{margin-right:0}
+  .topbar{padding:0 12px}
+  .content{padding:15px}
+  .cards{grid-template-columns:1fr 1fr}
+  .action-grid{grid-template-columns:1fr}
+  .brand{justify-content:center}
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOGIN -->
+<section class="login" id="login">
+  <div class="login-box">
+    <div class="logo">EG</div>
+    <h1>EduGuardian</h1>
+    <p>منصة الإدارة التعليمية الذكية</p>
+
+    <div class="field">
+      <label>نوع الحساب</label>
+      <select id="role">
+        <option value="director">المدير</option>
+        <option value="teacher">الأستاذ</option>
+        <option value="parent">ولي الأمر</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label>البريد الإلكتروني</label>
+      <input id="email" value="demo@eduguardian.test">
+    </div>
+
+    <div class="field">
+      <label>كلمة المرور</label>
+      <input id="password" type="password" value="123456">
+    </div>
+
+    <button class="btn btn-primary" onclick="login()">دخول إلى البرنامج</button>
+
+    <div class="demo-note">
+      ⚠️ هذه نسخة Demo تجريبية.<br>
+      لا تستخدم بيانات أطفال أو بيانات حقيقية.
+    </div>
+  </div>
+</section>
+
+<!-- APPLICATION -->
+<section class="app" id="app">
+
+<aside class="sidebar">
+
+  <div class="brand">
+    <div class="brand-icon">EG</div>
+    <strong>EduGuardian</strong>
+  </div>
+
+  <button class="nav-btn active" onclick="showPage('dashboard',this)">🏠 الرئيسية</button>
+  <button class="nav-btn" onclick="showPage('students',this)">👨‍🎓 التلاميذ</button>
+  <button class="nav-btn" onclick="showPage('schedule',this)">📅 برنامج اليوم</button>
+  <button class="nav-btn" onclick="showPage('attendance',this)">✓ الحضور والغياب</button>
+  <button class="nav-btn" onclick="showPage('grades',this)">📊 النقط والتقييمات</button>
+  <button class="nav-btn" onclick="showPage('notes',this)">📝 الملاحظات</button>
+  <button class="nav-btn" onclick="showPage('whatsapp',this)">💬 WhatsApp</button>
+  <button class="nav-btn" onclick="showPage('subscriptions',this)">💳 الاشتراكات</button>
+  <button class="nav-btn" onclick="showPage('audit',this)">🔐 سجل العمليات</button>
+  <button class="nav-btn" onclick="showPage('security',this)">🛡️ الأمان</button>
+
+  <div class="logout">
+    <button class="nav-btn" onclick="logout()">↪ تسجيل الخروج</button>
+  </div>
+
+</aside>
+
+<main class="main">
+
+<header class="topbar">
+  <div>
+    <select class="lang" onchange="changeLang(this.value)">
+      <option value="ar">العربية</option>
+      <option value="fr">Français</option>
+      <option value="en">English</option>
+    </select>
+  </div>
+
+  <div class="user">
+    <div>
+      <strong id="userName">المدير</strong><br>
+      <small id="userRole">مدير المؤسسة</small>
+    </div>
+    <div class="avatar">م</div>
+  </div>
+</header>
+
+<div class="content">
+
+<!-- DASHBOARD -->
+<section class="page active" id="dashboard">
+
+<div class="page-title">
+  <h2>لوحة التحكم</h2>
+  <span class="badge info">نسخة Demo</span>
+</div>
+
+<div class="cards">
+
+  <div class="card">
+    <div class="card-icon">👨‍🎓</div>
+    <div class="number">248</div>
+    <div class="label">إجمالي التلاميذ</div>
+  </div>
+
+  <div class="card">
+    <div class="card-icon">👨‍🏫</div>
+    <div class="number">24</div>
+    <div class="label">الأساتذة</div>
+  </div>
+
+  <div class="card">
+    <div class="card-icon">✓</div>
+    <div class="number">94%</div>
+    <div class="label">نسبة الحضور اليوم</div>
+  </div>
+
+  <div class="card">
+    <div class="card-icon">💬</div>
+    <div class="number">17</div>
+    <div class="label">إشعارات اليوم</div>
+  </div>
+
+</div>
+
+<div class="grid">
+
+<div class="table-card">
+<h3>آخر الحضور</h3>
+
+<table>
+<thead>
+<tr>
+<th>التلميذ</th>
+<th>القسم</th>
+<th>الدخول</th>
+<th>الحالة</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>أحمد العلوي</td>
+<td>3A</td>
+<td>08:02</td>
+<td><span class="badge present">حاضر</span></td>
+</tr>
+<tr>
+<td>سارة بنعمر</td>
+<td>3A</td>
+<td>08:17</td>
+<td><span class="badge late">متأخر</span></td>
+</tr>
+<tr>
+<td>يوسف أمين</td>
+<td>4B</td>
+<td>—</td>
+<td><span class="badge absent">غائب</span></td>
+</tr>
+<tr>
+<td>مريم الإدريسي</td>
+<td>5A</td>
+<td>07:55</td>
+<td><span class="badge present">حاضر</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<div class="table-card">
+<h3>تنبيهات</h3>
+
+<div class="notice">
+<strong>⚠️ غياب</strong>
+يوسف أمين لم يحضر اليوم.
+</div>
+
+<div class="notice">
+<strong>📊 تقييم</strong>
+تم إدخال تقييم جديد للقسم 3A.
+</div>
+
+<div class="notice">
+<strong>💬 WhatsApp</strong>
+3 رسائل في انتظار الإرسال.
+</div>
+
+</div>
+
+</div>
+</section>
+
+<!-- STUDENTS -->
+<section class="page" id="students">
+
+<div class="page-title">
+<h2>التلاميذ</h2>
+<button class="btn btn-gold">+ إضافة تلميذ</button>
+</div>
+
+<div class="table-card">
+
+<table>
+<thead>
+<tr>
+<th>رقم</th>
+<th>التلميذ</th>
+<th>القسم</th>
+<th>ولي الأمر</th>
+<th>الحالة</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>EG001</td>
+<td>أحمد العلوي</td>
+<td>3A</td>
+<td>محمد العلوي</td>
+<td><span class="badge present">نشط</span></td>
+</tr>
+<tr>
+<td>EG002</td>
+<td>سارة بنعمر</td>
+<td>3A</td>
+<td>سميرة بنعمر</td>
+<td><span class="badge present">نشط</span></td>
+</tr>
+<tr>
+<td>EG003</td>
+<td>يوسف أمين</td>
+<td>4B</td>
+<td>أمين يوسف</td>
+<td><span class="badge present">نشط</span></td>
+</tr>
+<tr>
+<td>EG004</td>
+<td>مريم الإدريسي</td>
+<td>5A</td>
+<td>خالد الإدريسي</td>
+<td><span class="badge present">نشط</span></td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</section>
+
+<!-- SCHEDULE -->
+<section class="page" id="schedule">
+
+<div class="page-title">
+<h2>برنامج اليوم</h2>
+<span>الخميس 11 شتنبر 2026</span>
+</div>
+
+<div class="cards">
+
+<div class="card">
+<div class="number">08:00</div>
+<div class="label">الرياضيات</div>
+<p>القسم 3A — الأستاذ محمد</p>
+</div>
+
+<div class="card">
+<div class="number">09:00</div>
+<div class="label">اللغة العربية</div>
+<p>القسم 3A — الأستاذة سارة</p>
+</div>
+
+<div class="card">
+<div class="number">10:30</div>
+<div class="label">العلوم</div>
+<p>القسم 3A — الأستاذ يوسف</p>
+</div>
+
+<div class="card">
+<div class="number">14:00</div>
+<div class="label">الفرنسية</div>
+<p>القسم 3A — الأستاذة مريم</p>
+</div>
+
+</div>
+
+<div class="table-card">
+<h3>ملاحظات اليوم</h3>
+<div class="notice">
+📌 يرجى التأكد من تسجيل الحضور قبل بداية الحصة.
+</div>
+</div>
+
+</section>
+
+<!-- ATTENDANCE -->
+<section class="page" id="attendance">
+
+<div class="page-title">
+<h2>الحضور والغياب</h2>
+<button class="btn btn-gold">تسجيل حضور</button>
+</div>
+
+<div class="table-card">
+
+<table>
+<thead>
+<tr>
+<th>التلميذ</th>
+<th>القسم</th>
+<th>الدخول</th>
+<th>الخروج</th>
+<th>الحالة</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>أحمد العلوي</td>
+<td>3A</td>
+<td>08:02</td>
+<td>16:05</td>
+<td><span class="badge present">حاضر</span></td>
+</tr>
+<tr>
+<td>سارة بنعمر</td>
+<td>3A</td>
+<td>08:17</td>
+<td>16:01</td>
+<td><span class="badge late">متأخر</span></td>
+</tr>
+<tr>
+<td>يوسف أمين</td>
+<td>4B</td>
+<td>—</td>
+<td>—</td>
+<td><span class="badge absent">غائب</span></td>
+</tr>
+<tr>
+<td>مريم الإدريسي</td>
+<td>5A</td>
+<td>07:55</td>
+<td>16:10</td>
+<td><span class="badge present">حاضر</span></td>
+</tr>
+</tbody>
+
+</table>
+
+</div>
+</section>
+
+<!-- GRADES -->
+<section class="page" id="grades">
+
+<div class="page-title">
+<h2>النقط والتقييمات</h2>
+<button class="btn btn-gold">+ إضافة تقييم</button>
+</div>
+
+<div class="table-card">
+
+<table>
+<thead>
+<tr>
+<th>التلميذ</th>
+<th>الرياضيات</th>
+<th>العربية</th>
+<th>الفرنسية</th>
+<th>العلوم</th>
+<th>المعدل</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>أحمد العلوي</td>
+<td>17</td>
+<td>16</td>
+<td>15</td>
+<td>18</td>
+<td><strong>16.5</strong></td>
+</tr>
+<tr>
+<td>سارة بنعمر</td>
+<td>18</td>
+<td>17</td>
+<td>16</td>
+<td>17</td>
+<td><strong>17</strong></td>
+</tr>
+<tr>
+<td>يوسف أمين</td>
+<td>13</td>
+<td>14</td>
+<td>12</td>
+<td>15</td>
+<td><strong>13.5</strong></td>
+</tr>
+</tbody>
+
+</table>
+
+</div>
+</section>
+
+<!-- NOTES -->
+<section class="page" id="notes">
+
+<div class="page-title">
+<h2>الملاحظات والمشاكل</h2>
+<button class="btn btn-gold">+ ملاحظة جديدة</button>
+</div>
+
+<div class="table-card">
+
+<div class="notice warning">
+<strong>ملاحظة سلوكية — أحمد العلوي</strong>
+تم تسجيل ملاحظة بخصوص التأخر في بداية الحصة.
+</div>
+
+<div class="notice">
+<strong>ملاحظة دراسية — يوسف أمين</strong>
+يحتاج إلى متابعة إضافية في مادة الرياضيات.
+</div>
+
+<div class="notice">
+<strong>إشادة — سارة بنعمر</strong>
+مشاركة ممتازة في درس العلوم.
+</div>
+
+</div>
+</section>
+
+<!-- WHATSAPP -->
+<section class="page" id="whatsapp">
+
+<div class="page-title">
+<h2>WhatsApp</h2>
+<span class="badge info">Demo</span>
+</div>
+
+<div class="cards">
+
+<div class="card">
+<div class="number">17</div>
+<div class="label">رسائل اليوم</div>
+</div>
+
+<div class="card">
+<div class="number">15</div>
+<div class="label">تم الإرسال</div>
+</div>
+
+<div class="card">
+<div class="number">2</div>
+<div class="label">قيد الانتظار</div>
+</div>
+
+</div>
+
+<div class="table-card">
+
+<h3>الإشعارات</h3>
+
+<table>
+<thead>
+<tr>
+<th>ولي الأمر</th>
+<th>نوع الإشعار</th>
+<th>الحالة</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>محمد العلوي</td>
+<td>وصول التلميذ</td>
+<td><span class="badge present">تم الإرسال</span></td>
+</tr>
+
+<tr>
+<td>أمين يوسف</td>
+<td>غياب التلميذ</td>
+<td><span class="badge late">قيد الانتظار</span></td>
+</tr>
+
+<tr>
+<td>سميرة بنعمر</td>
+<td>تقييم جديد</td>
+<td><span class="badge present">تم الإرسال</span></td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+<div class="notice warning" style="margin-top:15px">
+⚠️ في النسخة الحقيقية سيتم الربط مع <strong>WhatsApp Business API</strong>.
+</div>
+
+</section>
+
+<!-- SUBSCRIPTIONS -->
+<section class="page" id="subscriptions">
+
+<div class="page-title">
+<h2>الاشتراكات</h2>
+<button class="btn btn-gold">+ اشتراك جديد</button>
+</div>
+
+<div class="cards">
+
+<div class="card">
+<div class="number">185</div>
+<div class="label">اشتراك نشط</div>
+</div>
+
+<div class="card">
+<div class="number">43</div>
+<div class="label">ينتهي قريبًا</div>
+</div>
+
+<div class="card">
+<div class="number">20</div>
+<div class="label">غير مشترك</div>
+</div>
+
+<div class="card">
+<div class="number">92%</div>
+<div class="label">نسبة التجديد</div>
+</div>
+
+</div>
+
+<div class="table-card">
+
+<table>
+<thead>
+<tr>
+<th>ولي الأمر</th>
+<th>التلميذ</th>
+<th>الخطة</th>
+<th>تاريخ الانتهاء</th>
+<th>الحالة</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>محمد العلوي</td>
+<td>أحمد العلوي</td>
+<td>شهري</td>
+<td>30/09/2026</td>
+<td><span class="badge present">نشط</span></td>
+</tr>
+
+<tr>
+<td>سميرة بنعمر</td>
+<td>سارة بنعمر</td>
+<td>شهري</td>
+<td>30/09/2026</td>
+<td><span class="badge present">نشط</span></td>
+</tr>
+
+</tbody>
+</table>
+
+</div>
+
+</section>
+
+<!-- AUDIT -->
+<section class="page" id="audit">
+
+<div class="page-title">
+<h2>سجل العمليات</h2>
+</div>
+
+<div class="table-card">
+
+<table>
+<thead>
+<tr>
+<th>الوقت</th>
+<th>المستخدم</th>
+<th>العملية</th>
+<th>النتيجة</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>08:03</td>
+<td>الأستاذ محمد</td>
+<td>تسجيل حضور</td>
+<td><span class="badge present">ناجحة</span></td>
+</tr>
+
+<tr>
+<td>08:25</td>
+<td>المدير</td>
+<td>إضافة ملاحظة</td>
+<td><span class="badge present">ناجحة</span></td>
+</tr>
+
+<tr>
+<td>09:10</td>
+<td>الأستاذة سارة</td>
+<td>إضافة نقطة</td>
+<td><span class="badge present">ناجحة</span></td>
+</tr>
+
+</tbody>
+</table>
+
+</div>
+
+</section>
+
+<!-- SECURITY -->
+<section class="page" id="security">
+
+<div class="page-title">
+<h2>الأمان</h2>
+<span class="badge present">تصميم أمني</span>
+</div>
+
+<div class="action-grid">
+
+<div class="action security">
+<h3>🔐 التحكم بالصلاحيات</h3>
+<p>كل مستخدم يحصل على الصلاحيات المناسبة لدوره.</p>
+</div>
+
+<div class="action security">
+<h3>🛡️ حماية البيانات</h3>
+<p>في النسخة الإنتاجية سيتم استخدام تشفير واتصال HTTPS.</p>
+</div>
+
+<div class="action security">
+<h3>📋 سجل العمليات</h3>
+<p>تسجيل العمليات المهمة لمعرفة من قام بأي تغيير.</p>
+</div>
+
+<div class="action security">
+<h3>🔑 المصادقة</h3>
+<p>كلمات المرور يجب تخزينها بطريقة Hash آمنة في النسخة الحقيقية.</p>
+</div>
+
+<div class="action security">
+<h3>🚦 الصلاحيات</h3>
+<p>المدير والأستاذ وولي الأمر لا يرون نفس البيانات.</p>
+</div>
+
+<div class="action warning">
+<h3>⚠️ تنبيه</h3>
+<p>هذه الصفحة توضيحية فقط. النسخة التجريبية ليست نظامًا أمنيًا إنتاجيًا.</p>
+</div>
+
+</div>
+
+</section>
+
+</div>
+</main>
+</section>
+
+<script>
+
+let currentRole="director";
+
+function login(){
+
+  currentRole=document.getElementById("role").value;
+
+  document.getElementById("login").style.display="none";
+  document.getElementById("app").style.display="block";
+
+  const name=document.getElementById("userName");
+  const role=document.getElementById("userRole");
+
+  if(currentRole==="director"){
+    name.textContent="المدير";
+    role.textContent="مدير المؤسسة";
+  }
+
+  if(currentRole==="teacher"){
+    name.textContent="الأستاذ محمد";
+    role.textContent="أستاذ";
+  }
+
+  if(currentRole==="parent"){
+    name.textContent="محمد العلوي";
+    role.textContent="ولي الأمر";
+  }
+
+}
+
+function logout(){
+
+  document.getElementById("app").style.display="none";
+  document.getElementById("login").style.display="flex";
+
+}
+
+function showPage(page,button){
+
+  document.querySelectorAll(".page").forEach(p=>{
+    p.classList.remove("active");
+  });
+
+  document.getElementById(page).classList.add("active");
+
+  document.querySelectorAll(".nav-btn").forEach(b=>{
+    b.classList.remove("active");
+  });
+
+  if(button) button.classList.add("active");
+
+}
+
+function changeLang(lang){
+
+  if(lang==="fr"){
+    alert("Version française : démonstration");
+  }
+
+  if(lang==="en"){
+    alert("English version: Demo");
+  }
+
+  if(lang==="ar"){
+    alert("تم اختيار العربية");
+  }
+
+}
+
+</script>
+
+</body>
+</html>
