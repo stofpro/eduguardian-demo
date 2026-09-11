@@ -356,7 +356,377 @@ th{
   .action-grid{grid-template-columns:1fr}
   .brand{justify-content:center}
 }
-</style>
+/* ===== EduGuardian Modern Blue Design ===== */
+
+:root{
+  --navy:#0b2f6b;
+  --blue:#1677e8;
+  --blue2:#3b9cff;
+  --light:#f5f9ff;
+  --white:#ffffff;
+  --text:#18324f;
+  --muted:#6b7f99;
+  --green:#22b573;
+  --red:#e95d6a;
+  --orange:#f4a62a;
+  --shadow:0 10px 30px rgba(28,92,160,.10);
+  --radius:20px;
+}
+
+body{
+  background:#f5f9ff;
+  color:var(--text);
+  font-family:Arial,Tahoma,sans-serif;
+}
+
+/* LOGIN */
+
+.login{
+  min-height:100vh;
+  padding:24px;
+  background:
+    radial-gradient(circle at 15% 20%,rgba(59,156,255,.22),transparent 30%),
+    radial-gradient(circle at 85% 80%,rgba(22,119,232,.18),transparent 30%),
+    linear-gradient(135deg,#eef7ff,#ffffff);
+}
+
+.login-box{
+  width:min(430px,100%);
+  padding:38px 30px;
+  background:rgba(255,255,255,.96);
+  border:1px solid #e3effc;
+  border-radius:28px;
+  box-shadow:0 25px 70px rgba(20,87,150,.16);
+}
+
+.login .logo{
+  width:72px;
+  height:72px;
+  margin:0 auto 15px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:22px;
+  background:linear-gradient(135deg,#1677e8,#48a5ff);
+  color:#fff;
+  font-size:24px;
+  font-weight:900;
+  box-shadow:0 12px 25px rgba(22,119,232,.25);
+}
+
+.login-box h1{
+  color:#0b2f6b;
+  font-size:30px;
+  margin:8px 0;
+}
+
+.login-box p{
+  color:var(--muted);
+}
+
+.field label{
+  color:#29496b;
+  font-weight:700;
+}
+
+.field input,
+.field select{
+  border:1px solid #d9e7f6 !important;
+  border-radius:12px !important;
+  background:#f9fcff !important;
+  padding:13px !important;
+  outline:none;
+}
+
+.field input:focus,
+.field select:focus{
+  border-color:#3b9cff !important;
+  box-shadow:0 0 0 4px rgba(59,156,255,.12);
+}
+
+.btn{
+  border-radius:13px !important;
+  border:0 !important;
+  font-weight:800;
+  transition:.2s;
+}
+
+.btn:hover{
+  transform:translateY(-1px);
+}
+
+.btn-primary,
+.btn-gold{
+  background:linear-gradient(135deg,#1677e8,#3b9cff) !important;
+  color:#fff !important;
+  box-shadow:0 8px 20px rgba(22,119,232,.22);
+}
+
+.demo-note{
+  margin-top:18px;
+  border-radius:14px !important;
+  background:#fff8e8 !important;
+  border:1px solid #f6dfaa !important;
+  color:#805d17 !important;
+}
+
+/* SIDEBAR */
+
+.sidebar{
+  background:linear-gradient(180deg,#0b2f6b 0%,#104b9d 100%) !important;
+  box-shadow:8px 0 30px rgba(13,60,120,.12);
+}
+
+.brand{
+  padding:24px 18px !important;
+  border-bottom:1px solid rgba(255,255,255,.12);
+}
+
+.brand-icon{
+  background:#fff !important;
+  color:#1677e8 !important;
+  border-radius:14px !important;
+  font-weight:900;
+  box-shadow:0 8px 18px rgba(0,0,0,.12);
+}
+
+.brand strong{
+  color:#fff !important;
+}
+
+.nav-btn{
+  margin:5px 12px !important;
+  width:calc(100% - 24px) !important;
+  border-radius:13px !important;
+  color:#dcecff !important;
+  background:transparent !important;
+  transition:.2s;
+}
+
+.nav-btn:hover{
+  background:rgba(255,255,255,.10) !important;
+  color:#fff !important;
+}
+
+.nav-btn.active{
+  background:#fff !important;
+  color:#1677e8 !important;
+  box-shadow:0 8px 20px rgba(0,0,0,.10);
+}
+
+/* MAIN */
+
+.main{
+  background:#f5f9ff !important;
+}
+
+.topbar{
+  background:#fff !important;
+  border-bottom:1px solid #e4eef9 !important;
+  box-shadow:0 4px 20px rgba(28,92,160,.05);
+}
+
+.topbar h2{
+  color:#0b2f6b !important;
+}
+
+.content{
+  padding:24px !important;
+}
+
+/* CARDS */
+
+.card,
+.stat-card,
+.panel{
+  background:#fff !important;
+  border:1px solid #e5eff9 !important;
+  border-radius:var(--radius) !important;
+  box-shadow:var(--shadow) !important;
+}
+
+.cards{
+  gap:18px !important;
+}
+
+.stat-card{
+  padding:22px !important;
+  position:relative;
+  overflow:hidden;
+}
+
+.stat-card::after{
+  content:"";
+  position:absolute;
+  width:80px;
+  height:80px;
+  border-radius:50%;
+  background:rgba(59,156,255,.08);
+  left:-25px;
+  bottom:-30px;
+}
+
+.stat-card h3{
+  color:#0b2f6b !important;
+}
+
+.stat-card .number{
+  color:#1677e8 !important;
+  font-size:30px;
+  font-weight:900;
+}
+
+/* HEADINGS */
+
+h1,h2,h3,h4{
+  color:#0b2f6b;
+}
+
+.section-title{
+  color:#0b2f6b !important;
+}
+
+/* TABLES */
+
+table{
+  border-radius:15px;
+  overflow:hidden;
+}
+
+thead{
+  background:#eef6ff !important;
+}
+
+th{
+  color:#0b4d99 !important;
+  font-weight:800;
+}
+
+td{
+  border-bottom:1px solid #edf3f9 !important;
+}
+
+tr:hover td{
+  background:#f8fbff !important;
+}
+
+/* BADGES */
+
+.badge,
+.status,
+.tag{
+  border-radius:999px !important;
+  font-weight:700;
+}
+
+.badge-green{
+  background:#e9f9f1 !important;
+  color:#168653 !important;
+}
+
+.badge-red{
+  background:#ffedf0 !important;
+  color:#c94755 !important;
+}
+
+.badge-orange{
+  background:#fff5df !important;
+  color:#a96d09 !important;
+}
+
+.badge-blue{
+  background:#e8f3ff !important;
+  color:#1670d5 !important;
+}
+
+/* ACTION BUTTONS */
+
+button{
+  border-radius:12px;
+}
+
+.action-grid{
+  gap:14px !important;
+}
+
+.action-grid .btn{
+  min-height:48px;
+}
+
+/* ALERTS */
+
+.alert{
+  border-radius:15px !important;
+  border:1px solid #e1edf9 !important;
+}
+
+/* FORMS */
+
+input,select,textarea{
+  border-radius:12px !important;
+  border:1px solid #dbe8f5 !important;
+  background:#fff !important;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+  outline:none;
+  border-color:#3b9cff !important;
+  box-shadow:0 0 0 4px rgba(59,156,255,.10);
+}
+
+/* SCROLLBAR */
+
+::-webkit-scrollbar{
+  width:8px;
+}
+
+::-webkit-scrollbar-track{
+  background:#eef5fc;
+}
+
+::-webkit-scrollbar-thumb{
+  background:#9bc9f5;
+  border-radius:20px;
+}
+
+/* MOBILE */
+
+@media(max-width:650px){
+
+  .content{
+    padding:14px !important;
+  }
+
+  .topbar{
+    padding:12px !important;
+  }
+
+  .cards{
+    grid-template-columns:1fr !important;
+  }
+
+  .card,
+  .stat-card,
+  .panel{
+    border-radius:17px !important;
+  }
+
+  .login{
+    padding:15px;
+  }
+
+  .login-box{
+    padding:30px 20px;
+    border-radius:23px;
+  }
+
+  .login-box h1{
+    font-size:26px;
+  }
+
+}/style>
 </head>
 
 <body>
